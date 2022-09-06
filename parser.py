@@ -1,4 +1,5 @@
-#!/bin/python3
+#!/bin/python3.6
+#python3.x >= 3.6 
 
 import collections
 import csv
@@ -141,7 +142,7 @@ print("""
 """)
 
 for arch in sorted(archs):
-    print("<th>%s</th>" % arch)
+    print(f"<th>{arch}</th>")
 
 
 print("""
@@ -161,7 +162,7 @@ for syscall in sorted(syscalls.keys()):
 
     oddeven += 1
 
-    print("<tr class='%s'><td><a href='http://www.man7.org/linux/man-pages/man2/%s.2.html'>%s</a></td>" % (trclass, syscall,syscall))
+    print(f"<tr class='{trclass}'><td><a href='http://www.man7.org/linux/man-pages/man2/{syscall}.2.html'>{syscall}</a></td>")
 
     for arch in sorted(archs):
 
@@ -176,14 +177,14 @@ for syscall in sorted(syscalls.keys()):
             syscallnr = -1
             css = ' class="legacy" '
 
-        print("<td%s>%s</td>" % (css, syscallnr))
+        print(f"<td{css}>{syscallnr}</td>")
 
     print("</tr>")
 
-print("""
+print(f"""
         </tbody>
     </table>
-    <p>Table generated on %s</p>
+    <p>Table generated on {datetime.datetime.strftime(datetime.datetime.utcnow(), "%Y.%m.%d %H:%M")}</p>
 </body>
 </html>
-""" % datetime.datetime.strftime(datetime.datetime.utcnow(), "%Y.%m.%d %H:%M"))
+""")
